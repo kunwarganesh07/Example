@@ -28,12 +28,9 @@
                                         <td>{{ $data['contact'] }}</td>
                                         <td>{{ $data['address'] }}</td>
                                         <td>
-                                            <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
-                                            <form action="{{ route('students.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            <a href="{{ route('students.edit') }}" class="btn btn-danger">Delete</a>
+                                            <a href="" class="btn btn-info">Edit</a>
+
                                         </td>
                                     </tr>
                                 @endforeach

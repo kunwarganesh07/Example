@@ -66,7 +66,7 @@ class StudentController extends Controller
         $data->contact = $request->contact;
         $data->save();
 
-        return redirect()->route('student.index');
+        return redirect()
     }
 
     /**
@@ -74,9 +74,6 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Student::findOrfail($id);
-        $data->delete();
-        return redirect()->route('student.index');
-        // dd('DELETE STUDENT');
+        //
     }
 }

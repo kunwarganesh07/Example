@@ -31,8 +31,9 @@
                                             <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
                                             <form action="{{ route('students.delete', $data->id) }}" method="POST">
                                                 @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                @method('delete')
+                                                <a href="" type="submit" class="btn btn-danger">Delete Student</a>
+                                                <button></button>
                                             </form>
                                         </td>
                                     </tr>

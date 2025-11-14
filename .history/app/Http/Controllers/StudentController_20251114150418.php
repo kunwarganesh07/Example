@@ -60,13 +60,8 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Student::findOrfail($id);
-        $data->name = $request->name;
-        $data->address = $request->address;
-        $data->contact = $request->contact;
-        $data->save();
-
-        return redirect()->route('student.index');
+        $update = Student::findOrfail($id);
+        dd($update);
     }
 
     /**
@@ -74,9 +69,6 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Student::findOrfail($id);
-        $data->delete();
-        return redirect()->route('student.index');
-        // dd('DELETE STUDENT');
+        //
     }
 }

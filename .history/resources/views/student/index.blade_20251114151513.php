@@ -32,7 +32,8 @@
                                             <form action="{{ route('students.delete', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <a href="" type="submit" class="btn btn-danger">Delete Student</a>
+                                                <button type=""></button>
                                             </form>
                                         </td>
                                     </tr>

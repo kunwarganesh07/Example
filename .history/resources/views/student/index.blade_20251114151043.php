@@ -28,12 +28,10 @@
                                         <td>{{ $data['contact'] }}</td>
                                         <td>{{ $data['address'] }}</td>
                                         <td>
+                                            <a href="" class="btn btn-danger">Delete</a>
+                                             <form action="{{ route('students.delete', $student->id) }}" method="POST">
                                             <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
-                                            <form action="{{ route('students.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            <
                                         </td>
                                     </tr>
                                 @endforeach
