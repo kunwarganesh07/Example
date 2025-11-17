@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Student;
+use Illuminate\Http\Request;
+
+class StudentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $student = Student::all();
+        return view('student.index', compact('student'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('student.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        dd($request->all());
+
+        $image = '';
+        if ($request->hasFile('image')) {
+            $image = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('upload/images'), $image);
+        }
+
+        $student = new Student();
+        $student->name = $request->name;
+        $student->contact = $request->contact;
+        $student->address = $request->address;
+         $student->image = $image;
+        $student->save();
+        return redirect()->route('student.index');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        // dd($id);
+        $student = Student::findOrfail($id);
+        return view('student.edit', compact('student'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $data = Student::findOrfail($id);
+        $data->name = $request->name;
+        $data->address = $request->address;
+        $data->contact = $request->contact;
+        $data->save();
+
+        return redirect()->route('student.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $data = Student::findOrfail($id);
+        $data->delete();
+        return redirect()->route('student.index');
+        // dd('DELETE STUDENT');
+    }
+}
