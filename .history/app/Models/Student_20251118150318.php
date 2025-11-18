@@ -13,8 +13,8 @@ class Student extends Model
         return $this->hasOne(StudentProfile::class);
     }
 
-    public function fees()
+    public function profile()
     {
-        return $this->hasMany(StudentFees::class);
+        return $this->hasOne(StudentProfile::class);
     }
 }

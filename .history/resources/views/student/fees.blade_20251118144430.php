@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Student') }}
                         <h4 class="text-end">
-                            <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a>
+                            {{-- <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a> --}}
                         </h4>
                     </div>
 
@@ -24,7 +24,7 @@
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach ($student as $data)
+                                {{-- @foreach ($student as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
@@ -53,7 +53,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>

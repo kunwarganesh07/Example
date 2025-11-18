@@ -124,8 +124,7 @@ class StudentController extends Controller
 
     public function fees($id)
     {
-        // $fees = StudentFees::all();
-        $student = Student::with('fees')->findOrFail($id);
+        $student = Student::findOrfail($id);
         return view('student.fees', compact('student'));
     }
     public function pay($id)
@@ -136,13 +135,12 @@ class StudentController extends Controller
 
     public function feesstore(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $fees = new StudentFees();
-        $fees->student_id = $request->student_id;
-        $fees->amount = $request->amount;
-        $fees->date = $request->date;
-        $fees->message = $request->message;
-        $fees->save();
-        return redirect()->route('students.fees', $request->student_id);
+        $fees->student_id=$request->student_id;
+        $fees->amount=$request->amount;
+        $fees->amount=$request->amount;
+
+
     }
 }

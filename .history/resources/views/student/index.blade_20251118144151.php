@@ -41,8 +41,8 @@
                                         <td>{{ $data->profile->father_name ?? '-' }}</td>
                                         <td>{{ $data->profile->class ?? '-' }}</td>
                                         <td>
-                                            <a href="{{ route('students.fees', $data->id) }}"
-                                                class="btn btn-primary">Fees</a>
+                                            <a href="{{ route('students.profile', $data->id) }}"
+                                                class="btn btn-primary">Profile</a>
                                             <a href="{{ route('students.profile', $data->id) }}"
                                                 class="btn btn-primary">Profile</a>
                                             <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>

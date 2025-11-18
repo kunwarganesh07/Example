@@ -24,7 +24,7 @@
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach ($student as $data)
+                                {{-- @foreach ($student as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
@@ -53,7 +53,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>

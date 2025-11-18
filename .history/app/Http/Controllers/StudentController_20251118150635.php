@@ -125,7 +125,7 @@ class StudentController extends Controller
     public function fees($id)
     {
         // $fees = StudentFees::all();
-        $student = Student::with('fees')->findOrFail($id);
+        $students = Student::with('fees')->get();
         return view('student.fees', compact('student'));
     }
     public function pay($id)

@@ -25,8 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('students/profileupdate', [StudentController::class, 'profileupdate'])->name('students.profileupdate');
     Route::get('student/fees/{id}', [StudentController::class, 'fees'])->name('students.fees');
     Route::get('pay/fees/{id}', [StudentController::class, 'pay'])->name('pay.fees');
-    Route::post('fees/store', [StudentController::class, 'feesstore'])->name('fees.store');
-
 
 
 

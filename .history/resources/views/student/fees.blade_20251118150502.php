@@ -5,9 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Student') }}
+                    <div class="card-header">{{ __('Student Fees') }}
+                        <h4>Name: {{ $student->name }}</h4>
                         <h4 class="text-end">
-                            <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a>
+                            <a href="{{ route('pay.fees',$student->id) }}" class="btn btn-info">pay Fees</a>
+
                         </h4>
                     </div>
 
@@ -15,22 +17,19 @@
                         <table class="table">
                             <thead>
                                 <th>S.N</th>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>Address</th>
-                                <th>Imaage</th>
-                                <th>father name</th>
-                                <th>class</th>
+                                <th>Amount</th>
+                                <th>date</th>
+                                <th>Message</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
-                                @foreach ($student as $data)
+                                @foreach ($student->fees as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data['contact'] }}</td>
-                                        <td>{{ $data['address'] }}</td>
-                                        <td>
+                                        <td>{{ $data->amount }}</td>
+                                        <td>{{ $data['date'] }}</td>
+                                        <td>{{ $data['message'] }}</td>
+                                        {{-- <td>
                                             @if ($data->image)
                                                 <img src="{{ asset('upload/images/' . $data->image) }}" alt=""
                                                     width="150px">
@@ -51,7 +50,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
