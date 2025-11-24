@@ -6,9 +6,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Student') }}
-                        <h4 class="text-end">
-                            <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a>
-                        </h4>
+                        @can('create_user')
+                            <h4 class="text-end">
+                                <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a>
+                            </h4>
+                        @endcan
+
                     </div>
 
                     <div class="card-body">
@@ -47,12 +50,16 @@
                                                 class="btn btn-primary">Fees</a>
                                             <a href="{{ route('students.profile', $data->id) }}"
                                                 class="btn btn-primary">Profile</a>
-                                            <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
-                                            <form action="{{ route('students.delete', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            @can('edit_user')
+                                                <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
+                                            @endcan
+                                            @can('delete_user')
+                                                <form action="{{ route('students.delete', $data->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

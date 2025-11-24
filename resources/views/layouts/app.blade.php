@@ -34,6 +34,12 @@
                     <a class="navbar-brand" href="{{ route('teachers.index') }}">
                         {{ 'Teacher' }}
                     </a>
+                    <a class="navbar-brand" href="{{ route('roles.index') }}">
+                        {{ 'Role' }}
+                    </a>
+                    <a class="navbar-brand" href="{{ route('users.index') }}">
+                        {{ 'User' }}
+                    </a>
                 @endauth
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

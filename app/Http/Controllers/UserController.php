@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
-class TeacherController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teacher = Teacher::with('student')->get();
+        $users = User::all();
 
-        // dd($teacher);
-        return view('teacher.index', compact('teacher'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -24,8 +24,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('teacher.create', compact('roles'));
+        $roles = Role::pluck('name', 'name')->all();
+
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -33,14 +34,22 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $teacher = new Teacher();
-        $teacher->name = $request->name;
-        $teacher->contact = $request->contact;
-        $teacher->role = $request->role;
-        $teacher->address = $request->address;
-        $teacher->save();
-        return redirect()->route('teachers.index');
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+        $user = User::create($input);
+
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully');
     }
 
     /**

@@ -20,6 +20,14 @@
                                 <label for="address" class="form-label">Address:</label>
                                 <input type="text" name="address" class="form-control" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Role:</label>
+                                <select name="role" id="" class="form-control">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="mb-3">
                                 <label for="contact" class="form-label">Contact:</label>
