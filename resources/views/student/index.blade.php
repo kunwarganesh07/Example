@@ -1,33 +1,52 @@
-@extends('layouts.app')
+@extends('backend.layout.master')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Student') }}
-                        @can('create_user')
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Student</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Student</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">{{ __('Student') }}
+                            {{-- @can('create_user') --}}
                             <h4 class="text-end">
                                 <a href="{{ route('student.create') }}" class="btn btn-info">Create Student</a>
                             </h4>
-                        @endcan
+                            {{-- @endcan --}}
 
-                    </div>
+                        </div>
 
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <th>S.N</th>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>Address</th>
-                                <th>Imaage</th>
-                                <th>father name</th>
-                                <th>class</th>
-                                <th>Action</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($student as $data)
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <th>S.N</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Address</th>
+                                    <th>Imaage</th>
+                                    <th>father name</th>
+                                    <th>class</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($student as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->name }}</td>
@@ -35,10 +54,10 @@
                                         <td>{{ $data['address'] }}</td>
                                         <td>
                                             @if ($data->image)
-                                                <img src="{{ asset('upload/images/' . $data->image) }}" alt=""
-                                                    width="150px">
+                                            <img src="{{ asset('upload/images/' . $data->image) }}" alt=""
+                                                width="150px">
                                             @else
-                                                {{ 'NA' }}
+                                            {{ 'NA' }}
                                             @endif
                                         </td>
                                         <td>{{ $data->profile->father_name ?? '-' }}</td>
@@ -51,23 +70,26 @@
                                             <a href="{{ route('students.profile', $data->id) }}"
                                                 class="btn btn-primary">Profile</a>
                                             @can('edit_user')
-                                                <a href="{{ route('students.edit', $data->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="{{ route('students.edit', $data->id) }}"
+                                                class="btn btn-info">Edit</a>
                                             @endcan
                                             @can('delete_user')
-                                                <form action="{{ route('students.delete', $data->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                            <form action="{{ route('students.delete', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                             @endcan
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+</div>
 @endsection
